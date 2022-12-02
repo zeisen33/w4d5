@@ -51,18 +51,19 @@ list = [-5, -1, -3]
 
 def largest_contiguous_subsum_2(list)
     return list.max if list.all? {|ele| ele < 0}
-    max = - 1 / 1.0
-    a, b = 0, 0
-    while a < list.length && b < list.length
-        if list[a..b] + list[b] > max
-            max = list[a] + list[b]
-            b += 1
-        else
-            a += 1
-            b += 1
+    largest_sum = 0
+    i = 0
+    current_max = 0
+    while i < list.length
+        current_max += list[i]
+        if current_max > largest_sum
+            largest_sum = current_max
+        elsif current_max < 0
+            current_max = 0
         end
+        i += 1
     end
-    return max
+    largest_sum
 end
 
 list = [5, 3, -7]
