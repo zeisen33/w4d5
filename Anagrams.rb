@@ -27,4 +27,12 @@ end
 # p third_anagram?("gizmo", "sally")    #=> false
 # p third_anagram?("elvis", "lives")    #=> true
 
-def fourth_anagram?(search_str, guess_str)
+def fourth_anagram?(search_str, guess_str)   # O(n)
+    search_hash = Hash.new(0)
+    guess_hash = Hash.new(0)
+    search_str.each_char {|char| search_hash[char] += 1}
+    guess_str.each_char {|char| guess_hash[char] += 1}
+    search_hash == guess_hash
+end
+p fourth_anagram?("gizmo", "sally")    #=> false
+p fourth_anagram?("elvis", "lives")    #=> true
